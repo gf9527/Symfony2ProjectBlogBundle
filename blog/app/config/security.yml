@@ -1,0 +1,35 @@
+security:
+    encoders:
+        Company\BlogBundle\Entity\User:
+            algorithm: sha512
+            encode-as-base64: true
+            iterations: 10
+
+    role_hierarchy:
+        ROLE_USER:        [ROLE_TUTOR, ROLE_PARENT]
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+
+    providers:
+        main:
+            entity: { class: BlogBundle:User, property: username }
+
+    firewalls:
+        main:
+            pattern: /.*
+            form_login:
+                check_path: /login_check
+                login_path: /login
+            logout: true
+            security: true
+            anonymous: true
+
+
+
+    access_control:
+        - { path: /admin/.*, role: ROLE_ADMIN }
+        - { path: /posts, role: ROLE_TUTOR }
+        - { path: /posts/.*, role: ROLE_TUTOR }
+        
+        # final line 
+        - { path: /.*, role: IS_AUTHENTICATED_ANONYMOUSLY }

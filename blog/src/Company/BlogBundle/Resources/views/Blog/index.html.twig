@@ -1,0 +1,11 @@
+
+{% extends "BlogBundle::layout.html.twig" %}
+
+{% block title %} symfony2 Blog Tutorial | Home {% endblock %}
+
+{% block content %}
+    {% for post in posts %}
+        {% include 'BlogBundle:Blog:post.html.twig' with { 'post' : post } %}
+    {% endfor %}
+{% endblock %}
+

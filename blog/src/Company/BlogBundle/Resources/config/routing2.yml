@@ -1,0 +1,26 @@
+_security_login:
+    pattern:  /login
+    defaults: { _controller: BlogBundle:Security:login }
+
+_security_check:
+    pattern:  /login_check
+
+_security_logout:
+    pattern:  /logout
+
+admin_home:
+    pattern:  /admin/
+    defaults: { _controller: BlogBundle:Admin:index }
+
+show_page:
+    pattern:  /pages/{page}
+    defaults: { _controller: BlogBundle:Pages:show }
+
+homepage:
+    pattern:  /
+    defaults: { _controller: BlogBundle:Blog:index }
+
+post:
+    pattern:  /posts/{id}
+    defaults: { _controller: BlogBundle:Post:post }
+

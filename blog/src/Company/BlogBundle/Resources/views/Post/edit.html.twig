@@ -1,0 +1,56 @@
+
+{% extends "BlogBundle::layout.html.twig" %}
+
+{% block title %} symfony2 Blog Tutorial | Form {% endblock %}
+
+{% block content %}
+
+	<script>
+
+	jQuery(document).ready(function(){
+		jQuery("#post-delete").button({icons:{primary:'ui-icon-trash'}}).click(function() {
+				jQuery("#dialog-post-delete").dialog({
+					resizable: false,
+					maxHeight:216,
+					position: ["center",100],
+					modal: true,
+					buttons: {
+						'No': function() {
+							jQuery(this).dialog('close');
+						},
+						'Yes': function() {
+							jQuery("#post-form").attr("action", "{{ path('post_delete', { 'id' : postId }) }}" );
+							jQuery(this).dialog('close');
+							jQuery("#post-form").submit();
+						}
+					}
+				});
+			});
+		jQuery("#post-create-update").button({icons:{primary:'ui-icon-disk'}});
+	});
+	</script>
+
+
+	{% if (postId>0)  %}
+		<form id="post-form" action="{{ path('post_update', { 'id' : postId }) }}" method="post" {{ form_enctype(form) }}>
+	{% else %}
+		<form id="post-form" action="{{ path('post_create') }}" method="post" {{ form_enctype(form) }}>
+	{% endif %}
+
+			<hr />
+			{{ form_widget(form) }}
+			<br/>
+			<div id="post-toolbar" class="toolbar">
+				<button id="post-create-update" type="submit">Save</button>
+				{% if (postId>0)  %}
+					<button id="post-delete" type="button">Delete</button>
+				{% endif %}
+       			</div>
+ 		</form>
+	<div id="dialog-post-delete" title="Confirm delete post" style="display: none">
+        	<p><span class="ui-icon ui-icon-alert" style="float: left; margin: 0 7px 20px 0;"></span> 
+		Are you sure you want to delete your post {{ form.vars.value.title }} ?, This action cannot be undone.</p>
+ 	</div>
+
+{% endblock %}
+

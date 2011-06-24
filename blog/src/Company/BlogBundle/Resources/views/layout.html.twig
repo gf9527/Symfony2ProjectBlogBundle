@@ -1,0 +1,94 @@
+
+{% extends "::base.html.twig" %}
+ 
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/blog/css/blog.css') }}" media="screen" />
+    <!--
+    <link rel="stylesheet" type="text/css" href="{{ asset('resources/aristo/css/Aristo/jquery-ui-1.8.7.custom.css') }}" media="screen" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('resources/uniform/css/uniform.default.css') }}" media="screen" />
+    -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('resources/absolution/jquery.ui.all.css') }}" media="screen" />
+
+    		<style type="text/css"> 
+			/*demo page css*/
+			body { font: 75% "Trebuchet MS", sans-serif; margin: 50px;}
+			form input { float: left; width: 100%; } 
+			form label { float: left; display: block; margin: 7px 0px 7px 0px; }
+			form textarea { width: 100%; height: 70px; }
+		</style> 
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="{{ asset('resources/uniform/jquery.uniform.min.js') }}"></script>
+    <script>
+	jQuery(document).ready(function(){
+		
+		jQuery("input, select, textarea, radio, checkbox").uniform();
+		jQuery("header nav ul li a").button();
+
+		jQuery("div.toolbar a, div.toolbar button").button();
+
+	});
+    </script>
+
+{% endblock %}
+ 
+{% block body %}
+    <div id="container">
+        <header class="clearfix">
+            <h1>
+                symfony2 Blog Tutorial
+            </h1>
+
+
+            <nav>
+                <ul>
+			<li>
+				<a href="{{ path('post_index') }}">CRUD</a>
+			</li>
+			<li>
+				<a href="{{ path('show_page', { 'page' : 'about' }) }}">About</a>
+			</li>
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+
+			<li>
+                            <a href="{{ path('admin_home') }}">
+                                Admin
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ path('_security_logout') }}">
+                                Logout
+                            </a>
+                        </li>
+                    
+		   {% else %}
+			<li>
+                            <a href="{{ path('_security_login') }}">
+                                Login
+                            </a>
+                        </li>
+ 		    {% endif %}
+
+                </ul>
+            </nav>
+        </header>
+        <div class="clearfix">
+            <div id="content">
+                {% block content %}No content.{% endblock %}
+            </div>
+            <div id="sidebar">
+                {% block sidebar %}{% endblock %}
+            </div>
+        </div>
+        <footer class="clearfix">
+            <p class="symfony2">
+                Powered by <a href="http://www.symfony.com" target="_blank">Symfony</a>
+            </p>
+            <p class="copy">
+                &copy; Company 2011
+            </p>
+        </footer>
+    </div>
+{% endblock %}
+

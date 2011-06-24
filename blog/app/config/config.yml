@@ -1,0 +1,119 @@
+imports:
+    - { resource: parameters.ini }
+    - { resource: security.yml }
+
+framework:
+    secret:   %secret%
+    charset:       UTF-8
+    csrf_protection:
+        enabled: true
+    router:        { resource: "%kernel.root_dir%/config/routing.yml" }
+    form:            true
+    csrf_protection: true
+    validation:    { enable_annotations: true }
+    templating:    { engines: ['twig'] } #assets_version: SomeVersionScheme
+    session:
+        default_locale: %locale%
+        lifetime:       3600
+        auto_start:     true
+       # name:           blog
+        #storage_id:     session.storage.pdo
+
+
+
+
+#parameters:
+ #   pdo.db_options:
+  #      db_table:    session
+   #     db_id_col:   session_id
+    #    db_data_col: session_value
+     #   db_time_col: session_time
+
+#services:
+  #  session.storage.pdo:
+   #     class:     Symfony\Component\HttpFoundation\SessionStorage\PdoSessionStorage
+    #    arguments: [@pdo, %session.storage.options%, %pdo.db_options%]
+
+    #pdo:
+     #   class: PDO
+      #  arguments:
+       #     dsn:      "mysql:dbname=blogdb"
+        #    user:     root
+         #   password: pass
+
+
+# Twig Configuration
+twig:
+    debug:            %kernel.debug%
+    strict_variables: %kernel.debug%
+
+# Assetic Configuration
+assetic:
+    debug:          %kernel.debug%
+    use_controller: false
+    filters:
+        cssrewrite: ~
+        # closure:
+        #     jar: %kernel.root_dir%/java/compiler.jar
+        # yui_css:
+        #     jar: %kernel.root_dir%/java/yuicompressor-2.4.2.jar
+
+## Doctrine Configuration
+doctrine:
+   dbal:
+    #   default_connection:       default
+     # connections:
+      #     default:
+               driver:   pdo_mysql
+               host:     localhost
+               dbname:   blogdb
+               user:     root
+               password: pass 
+             #  logging:  %kernel.debug%
+   orm:
+       auto_generate_proxy_classes: %kernel.debug%
+       default_entity_manager:   default
+       entity_managers:
+           default:
+               connection: default
+               mappings:
+                   BlogBundle: ~
+## Security Configuration
+#security:
+ #   encoders:
+  #      Company\BlogBundle\Entity\User:
+   #         algorithm: sha512
+    #        encode-as-base64: true
+     #       iterations: 10
+
+    #providers:
+     #   main:
+      #      entity: { class: BlogBundle:User, property: username }
+
+    #firewalls:
+     #   main:
+      #      pattern: /.*
+       #     form_login:
+        #        check_path: /login_check
+         #       login_path: /login
+          #  logout: true
+           # security: true
+            #anonymous: true
+
+   # access_control:
+    #    - { path: /admin/.*, role: ROLE_ADMIN }
+     #   - { path: /.*, role: IS_AUTHENTICATED_ANONYMOUSLY }
+
+
+jms_security_extra:
+    secure_controllers:  true
+    secure_all_services: false
+
+## Swiftmailer Configuration
+#swiftmailer:
+#    transport:  smtp
+#    encryption: ssl
+#    auth_mode:  login
+#    host:       smtp.gmail.com
+#    username:   xxxxxxxx
+#    password:   xxxxxxxx

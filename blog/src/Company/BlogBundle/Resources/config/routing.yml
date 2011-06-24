@@ -1,0 +1,68 @@
+_security_login:
+    pattern:  /login
+    defaults: { _controller: BlogBundle:Security:login }
+
+_security_check:
+    pattern:  /login_check
+
+_security_logout:
+    pattern:  /logout
+
+admin_home:
+    pattern:  /admin/
+    defaults: { _controller: BlogBundle:Admin:index }
+
+show_page:
+    pattern:  /pages/{page}
+    defaults: { _controller: BlogBundle:Pages:show }
+
+homepage:
+    pattern:  /
+    defaults: { _controller: BlogBundle:Blog:index }
+
+#posts 
+
+post_index:
+    pattern:  /posts
+    defaults: { _controller: BlogBundle:Post:index }
+    requirements:
+      _method: GET
+
+post_add:
+    pattern:  /posts/add
+    defaults: { _controller: BlogBundle:Post:add }
+    requirements:
+      _method: GET
+
+post_show:
+    pattern:  /posts/{id}
+    defaults: { _controller: BlogBundle:Post:show }
+    requirements:
+      _method: GET
+
+post_edit:
+    pattern:  /posts/{id}/edit
+    defaults: { _controller: BlogBundle:Post:edit }
+    requirements:
+      _method: GET
+
+post_create:
+   pattern:  /posts
+   defaults: { _controller: BlogBundle:Post:create }
+   requirements:
+      _method: POST
+
+post_update:
+    pattern:  /posts/{id}
+    defaults: { _controller: BlogBundle:Post:update }
+    requirements:
+      _method: POST
+
+post_delete:
+    pattern: /posts/{id}/delete
+    defaults: { _controller: BlogBundle:Post:delete }
+    requirements:
+      _method: POST
+
+
+

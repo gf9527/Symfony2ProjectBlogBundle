@@ -1,0 +1,26 @@
+
+{% extends "BlogBundle::layout.html.twig" %}
+
+{% block title %} symfony2 Blog Tutorial | Form {% endblock %}
+
+{% block content %}	
+
+        <script>
+        jQuery(document).ready(function(){
+                jQuery("#post-add").button({icons:{primary:'ui-icon-plusthick'}});
+        });
+        </script>
+
+
+    	{% for post in posts %}
+    		<h2 class="post_title">
+       	    		<a href="{{ path('post_show', { 'id' : post.id }) }}"> {{ post.id }} -  {{ post.title }} </a> <br/>
+    		</h2>
+    	{% endfor %}
+	<br/>
+    	<div id="entity-toolbar" class="toolbar">
+                <a id="post-add" href="{{ path('post_add') }}">Add Post</a>
+        </div>
+
+{% endblock %}
+

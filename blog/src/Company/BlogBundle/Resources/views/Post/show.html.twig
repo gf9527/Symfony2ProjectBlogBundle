@@ -1,0 +1,40 @@
+
+{% extends "BlogBundle::layout.html.twig" %}
+
+{% block title %} symfony2 Blog Tutorial | Form {% endblock %}
+
+{% block content %}
+
+
+	<script>
+        jQuery(document).ready(function(){
+                jQuery("#post-back").button({icons:{primary:'ui-icon-arrowreturnthick-1-w'}});
+                jQuery("#post-edit").button({icons:{primary:'ui-icon-pencil'}});
+        });
+        </script>
+
+	<div class="post">
+	    <h2 class="post_title">
+	       {{ post.id }} -  {{ post.title }} 
+	    </h2>
+
+   	    <p class="post_info">
+        	{% if (post.user!=null) %}
+                	by {{  (post.user.fullName) }}
+        	{% endif  %}
+        	on {{ post.createdAt | date('F jS, Y') }}
+    	    </p>
+
+	    <p class="post_body">
+	        {{ post.content }}
+	    </p>
+	    {% include 'BlogBundle:Blog:tags.html.twig' with { 'tags' : post.tags } %}
+	</div>
+	<br/>
+	<div id="entity-toolbar" class="toolbar"> 
+		<a id="post-back" href="{{ path('post_index') }}">Back</a>
+		<a id="post-edit"  href="{{ path('post_edit', { 'id' : post.id }) }}">Edit</a>
+	</div>
+
+{% endblock %}
+
