@@ -1,9 +1,10 @@
 ##Symfony2ProjectBlogBundle
 Small demo-project to learn how to create Symfony2 CRUD
 
-This project take it's name and was inspired and based on two projects
-+ https://github.com/Garfield-fr/Symfony2Project
-+ https://github.com/odino/BlogBundle
+##NOTES
+	--This project take it's name and was inspired and based on two projects
+	--https://github.com/Garfield-fr/Symfony2Project
+	--https://github.com/odino/BlogBundle
 
 ##WHAT'S INSIDE
 + Symfony2  - Beta 5
