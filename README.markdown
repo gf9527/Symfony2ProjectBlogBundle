@@ -14,6 +14,6 @@ Small demo-project to learn how to create Symfony2 CRUD
 + jQuery Absolution Theme
 
 #ALSO
-Removal of files and comments on config files pending
-Code refactorization and optimization at controllers need to be done in order to avoid code duplicity
+Removal of files and comments on configurations files pending
+Code refactorization and optimization at controllers need to be done in order to avoid code duplicity.
 
